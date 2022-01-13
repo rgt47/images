@@ -1,0 +1,78 @@
+% :Author: Stefan Kottwitz
+% :Source: TeXblog - TikZ: shaded cube
+%          http://texblog.net/latex-archive/graphics/tikz-cube-3d/
+\documentclass[12pt]{article}
+\usepackage{tikz}
+\usepackage{verbatim}
+
+\begin{comment}
+
+:Title: Sudoku 3D cube
+:Tags: 3D, Transformations
+
+This example shows how to create an effective 3D effect using the ``slant`` transformation.
+Shading has been added to enhance the 3D impression. Read more about this example over
+at TeXblog_. 
+
+.. _TeXblog: http://texblog.net/latex-archive/graphics/tikz-cube-3d/
+
+:Author: Stefan Kottwitz
+:Source: `TeXblog - TikZ: shaded cube`__
+
+.. __: http://texblog.net/latex-archive/graphics/tikz-cube-3d/
+
+\end{comment}
+
+\usetikzlibrary{positioning}
+\begin{document}
+\large
+\pagestyle{empty}
+\definecolor{pfb}{RGB}{38, 115, 184} 
+\definecolor{ucsd}{RGB}{24, 43, 73} 
+%171, 142, 5
+\definecolor{ucsdg}{RGB}{171, 142, 5}
+%rgb(24,43,73)
+\begin{tikzpicture}[every node/.style={minimum size=1cm},on grid]
+\begin{scope}[every node/.append style={yslant=-0.5},yslant=-0.5]
+  \shade[right color=green!10, left color=green!80] (0,0) rectangle +(3,3);
+  \node[text=ucsd ] at (0.5,2.5) {H};
+  \node[text=ucsd ] at (1.5,2.5) {W};
+  \node[text=gray ] at (2.5,2.5) {8};
+  \node[text=ucsd ] at (0.5,1.5) {S};
+  \node[text=ucsd ] at (1.5,1.5) {P};
+  \node[text=ucsd ] at (2.5,1.5) {H};
+  \node[text=gray ] at (0.5,0.5) {1};
+  \node[text=gray ] at (1.5,0.5) {3};
+  \node[text=gray ] at (2.5,0.5) {9};
+  \draw (0,0) grid (3,3);
+\end{scope}
+\begin{scope}[every node/.append style={yslant=0.5},yslant=0.5]
+  \shade[right color=blue!80,left color=blue!10] (3,-3) rectangle +(3,3);
+  \node[text=white ] at (3.5,-0.5){U};
+  \node[text=white ] at (4.5,-0.5) {C};
+  \node[text=gray ] at (5.5,-0.5) {9};
+  \node[text=gray ] at (3.5,-1.5) {2};
+  \node[text=white ] at (4.5,-1.5){S};
+  \node[text=white ] at (5.5,-1.5) {D};
+  \node[text=gray ] at (3.5,-2.5) {0};
+  \node[text=gray ] at (4.5,-2.5) {9};
+  \node[text=gray ] at (5.5,-2.5) {3};
+  \draw(3,-3) grid (6,0);
+\end{scope}
+\begin{scope}[every node/.append style={
+    yslant=0.5,xslant=-1},yslant=0.5,xslant=-1
+  ]
+  \shade[bottom color=cyan!10, top color=cyan!90] (6,3) rectangle +(-3,-3);
+  \node[text=black] at (3.5,2.5) {R};
+  \node[text=black] at (3.5,1.5) {L};
+  \node[text=black] at (3.5,0.5) {};
+  \node[text=black] at (4.5,2.5) {G};
+  \node[text=black] at (4.5,1.5) {A};
+  \node[text=gray]at (4.5,0.5) {4};
+  \node[text=black] at (5.5,2.5) {T};
+  \node[text=black] at (5.5,1.5) {B};
+  \node[text=gray]at (5.5,0.5) {7};
+  \draw[text=black] (3,0) grid (6,3);
+\end{scope}
+\end{tikzpicture}
+\end{document}
