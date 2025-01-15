@@ -80,40 +80,40 @@ at TeXblog_.
 }
 
 
-%\tdplotsetmaincoords{60}{125}
-%\begin{tikzpicture}[
-%		tdplot_main_coords,
-%		grid/.style={very thin,gray},
-%		axis/.style={->,blue,thick},
-%		cube/.style={very thick,fill=red},
-%		cube hidden/.style={very thick,dashed}]
-%	%draw a grid in the x-y plane
-%	\foreach \x in {-0.5,0,...,2.5}
-%		\foreach \y in {-0.5,0,...,2.5}
-%		{
-%			\draw[grid] (\x,-0.5) -- (\x,2.5);
-%			\draw[grid] (-0.5,\y) -- (2.5,\y);
-%		}
+\tdplotsetmaincoords{60}{125}
+\begin{tikzpicture}[
+		tdplot_main_coords,
+		grid/.style={very thin,gray},
+		axis/.style={->,blue,thick},
+		cube/.style={very thick,fill=red},
+		cube hidden/.style={very thick,dashed}]
+	%draw a grid in the x-y plane
+	\foreach \x in {-0.5,0,...,2.5}
+		\foreach \y in {-0.5,0,...,2.5}
+		{
+			\draw[grid] (\x,-0.5) -- (\x,2.5);
+			\draw[grid] (-0.5,\y) -- (2.5,\y);
+		}
 
-%	%draw the axes
-%	\draw[axis] (0,0,0) -- (3,0,0) node[anchor=west]{$x$};
-%	\draw[axis] (0,0,0) -- (0,3,0) node[anchor=west]{$y$};
-%	\draw[axis] (0,0,0) -- (0,0,3) node[anchor=west]{$z$};
+	%draw the axes
+	\draw[axis] (0,0,0) -- (3,0,0) node[anchor=west]{$x$};
+	\draw[axis] (0,0,0) -- (0,3,0) node[anchor=west]{$y$};
+	\draw[axis] (0,0,0) -- (0,0,3) node[anchor=west]{$z$};
 
-%	%draw the front-right of the cube
-%	\draw[cube] (2,0,0) -- (2,2,0) -- (2,2,2) -- (2,0,2) -- cycle;
+	%draw the front-right of the cube
+	\draw[cube] (2,0,0) -- (2,2,0) -- (2,2,2) -- (2,0,2) -- cycle;
 
-%	%draw the front-left of the cube
-%	\draw[cube] (0,2,0) -- (2,2,0) -- (2,2,2) -- (0,2,2) -- cycle;
+	%draw the front-left of the cube
+	\draw[cube] (0,2,0) -- (2,2,0) -- (2,2,2) -- (0,2,2) -- cycle;
 
-%	%draw the top of the cube
-%	\draw[cube] (0,0,2) -- (0,2,2) -- (2,2,2) -- (2,0,2) -- cycle;
+	%draw the top of the cube
+	\draw[cube] (0,0,2) -- (0,2,2) -- (2,2,2) -- (2,0,2) -- cycle;
 
-%	%draw dashed lines to represent hidden edges
-%	\draw[cube hidden] (0,0,0) -- (2,0,0);
-%	\draw[cube hidden] (0,0,0) -- (0,2,0);
-%	\draw[cube hidden] (0,0,0) -- (0,0,2);
+	%draw dashed lines to represent hidden edges
+	\draw[cube hidden] (0,0,0) -- (2,0,0);
+	\draw[cube hidden] (0,0,0) -- (0,2,0);
+	\draw[cube hidden] (0,0,0) -- (0,0,2);
 
-%\end{tikzpicture}
+\end{tikzpicture}
 
 \end{document}
