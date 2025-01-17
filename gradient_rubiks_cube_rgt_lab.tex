@@ -1,0 +1,67 @@
+
+% :Author: Refined Rubik's Cube with UC San Diego Colors and Gradient Effect
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage{fontspec}
+
+\begin{comment}
+:Title: Rubik's Cube with UC San Diego Colors, Light Blue Text, and Gradient
+:Tags: 3D, Transformations, Text Enhancement, Gradients
+
+This design incorporates a gradient effect to simulate lighting and enhance visual appeal.
+\end{comment}
+
+\usetikzlibrary{positioning,shadings}
+\begin{document}
+\large
+\pagestyle{empty}
+
+% Define UC San Diego colors and light blue for text
+\definecolor{ucsdblue}{RGB}{0, 51, 102}
+\definecolor{ucsdyellow}{RGB}{255, 204, 0}
+\definecolor{ucsdgray}{RGB}{166, 166, 166}
+\definecolor{lightblue}{RGB}{173, 216, 230} % Light blue text color
+
+\resizebox{5in}{!}{
+\begin{tikzpicture}[
+    every node/.style={minimum size=1cm, font=\bfseries\sffamily\large, align=center},
+    cube face/.style={draw=black, very thick},
+    text face/.style={font=\bfseries\sffamily\large, text=lightblue},
+    front shading/.style={left color=ucsdblue!90, right color=ucsdblue!50},
+    top shading/.style={bottom color=ucsdyellow!90, top color=ucsdyellow!50},
+    side shading/.style={left color=ucsdgray!90, right color=ucsdgray!50}
+]
+
+% Front face (divided into squares with UCSD blue gradient)
+\foreach \x in {0, 1, 2} {
+    \foreach \y in {0, 1, 2} {
+        \shade[front shading] (\x,\y,0) rectangle ++(1,1);
+        \draw[cube face] (\x,\y,0) rectangle ++(1,1);
+    }
+}
+
+% Top face (divided into squares with UCSD yellow gradient)
+\foreach \x in {0, 1, 2} {
+    \foreach \z in {0, 1, 2} {
+        \shade[top shading] (\x,2,\z) -- ++(1,0) -- ++(0,-1) -- ++(-1,0) -- cycle;
+        \draw[cube face] (\x,2,\z) -- ++(1,0) -- ++(0,-1) -- ++(-1,0) -- cycle;
+    }
+}
+
+% Side face (divided into squares with UCSD gray gradient)
+\foreach \y in {0, 1, 2} {
+    \foreach \z in {0, 1, 2} {
+        \shade[side shading] (2,\y,\z) -- ++(0,1) -- ++(0,0,-1) -- ++(0,-1) -- cycle;
+        \draw[cube face] (2,\y,\z) -- ++(0,1) -- ++(0,0,-1) -- ++(0,-1) -- cycle;
+    }
+}
+
+% Add "RGT Lab" text with enhanced readability and alignment
+\node[text face] at (1.5, 1, 0) {RGT Lab}; % Front face
+\node[text face, rotate=90] at (2, 1, 1) {RGT Lab}; % Side face
+\node[text face] at (1, 2.5, 1) {RGT Lab}; % Top face
+
+\end{tikzpicture}
+}
+\end{document}

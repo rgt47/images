@@ -1,0 +1,61 @@
+
+% :Author: Data Science Logo with UC San Diego Colors
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage{fontspec}
+
+\begin{comment}
+:Title: Data Science Logo with UC San Diego Colors
+:Tags: Data Science, Graphics, UCSD Colors
+
+This design incorporates data science-related imagery, including graphs, network nodes, and datasets.
+\end{comment}
+
+\usetikzlibrary{positioning,shapes.geometric,shapes.misc,shapes.symbols,shapes.arrows,fit,shadows,shadings}
+\begin{document}
+\large
+\pagestyle{empty}
+
+% Define UC San Diego colors and light blue for text
+\definecolor{ucsdblue}{RGB}{0, 51, 102}
+\definecolor{ucsdyellow}{RGB}{255, 204, 0}
+\definecolor{ucsdgray}{RGB}{166, 166, 166}
+\definecolor{lightblue}{RGB}{173, 216, 230} % Light blue text color
+\definecolor{dsnode}{RGB}{0, 153, 153}
+
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily, align=center},
+    network node/.style={circle, draw=dsnode, fill=dsnode!30, thick, minimum size=1cm},
+    graph node/.style={rectangle, draw=ucsdyellow, fill=ucsdyellow!30, thick, minimum size=1.2cm},
+    dataset/.style={ellipse, draw=ucsdgray, fill=ucsdgray!30, thick, minimum size=1.5cm},
+    text label/.style={font=\bfseries\large, text=lightblue}
+]
+
+% Draw network nodes
+\node[network node] (node1) at (0, 0) {Node 1};
+\node[network node] (node2) at (2, 1.5) {Node 2};
+\node[network node] (node3) at (2, -1.5) {Node 3};
+\node[network node] (node4) at (4, 0) {Node 4};
+
+% Connect network nodes
+\draw[thick, ucsdblue] (node1) -- (node2);
+\draw[thick, ucsdblue] (node1) -- (node3);
+\draw[thick, ucsdblue] (node2) -- (node4);
+\draw[thick, ucsdblue] (node3) -- (node4);
+
+% Add graph element
+\node[graph node] (graph) at (6, 2) {Graph};
+
+% Add dataset element
+\node[dataset] (dataset) at (6, -2) {Dataset};
+
+% Add connecting arrows
+\draw[->, thick, ucsdyellow] (node4) -- (graph);
+\draw[->, thick, ucsdyellow] (node4) -- (dataset);
+
+% Add central text
+\node[text label] at (2, -3) {RGT Lab};
+
+\end{tikzpicture}
+\end{document}

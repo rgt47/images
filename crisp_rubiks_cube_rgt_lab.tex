@@ -1,0 +1,73 @@
+
+% :Author: Enhanced Rubik's Cube (Improved Text Readability)
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{verbatim}
+\usepackage{fontspec}
+
+\begin{comment}
+:Title: Rubik's Cube Logo with Improved Text Readability
+:Tags: 3D, Transformations, Text Enhancement
+
+This design enhances the text readability by using a bold sans-serif font and high-contrast colors.
+\end{comment}
+
+\usetikzlibrary{positioning,shadings,3d}
+\begin{document}
+\large
+\pagestyle{empty}
+
+% Define Rubik's Cube colors
+\definecolor{redface}{RGB}{210, 43, 43}
+\definecolor{blueface}{RGB}{43, 43, 210}
+\definecolor{greenface}{RGB}{43, 210, 43}
+\definecolor{yellowface}{RGB}{255, 210, 43}
+\definecolor{whiteface}{RGB}{255, 255, 255}
+\definecolor{orangeface}{RGB}{255, 125, 43}
+\definecolor{textcolor}{RGB}{0, 0, 0} % Black text for contrast
+\definecolor{textbg}{RGB}{255, 255, 255} % White background for text
+
+\resizebox{5in}{!}{
+\begin{tikzpicture}[
+    every node/.style={minimum size=1cm, font=\bfseries\sffamily\large, align=center},
+    cube face/.style={draw=black, very thick},
+    text face/.style={font=\bfseries\sffamily\large, text=textcolor, fill=textbg, text opacity=1, fill opacity=0.8},
+    shading/.style={left color=whiteface!80, right color=whiteface!50}
+]
+
+% Draw a 3D Rubik's Cube with text
+\begin{scope}[tdplot_main_coords]
+    % Front face (divided into squares)
+    \foreach \x in {0, 1, 2} {
+        \foreach \y in {0, 1, 2} {
+            \fill[blueface] (\x,\y,0) rectangle ++(1,1,0);
+            \draw[cube face] (\x,\y,0) rectangle ++(1,1,0);
+        }
+    }
+
+    % Top face
+    \foreach \x in {0, 1, 2} {
+        \foreach \z in {0, 1, 2} {
+            \fill[yellowface] (\x,2,\z) -- ++(1,0,0) -- ++(0,0,-1) -- ++(-1,0,0) -- cycle;
+            \draw[cube face] (\x,2,\z) -- ++(1,0,0) -- ++(0,0,-1) -- ++(-1,0,0) -- cycle;
+        }
+    }
+
+    % Side face
+    \foreach \y in {0, 1, 2} {
+        \foreach \z in {0, 1, 2} {
+            \fill[greenface] (2,\y,\z) -- ++(0,1,0) -- ++(0,0,-1) -- ++(0,-1,0) -- cycle;
+            \draw[cube face] (2,\y,\z) -- ++(0,1,0) -- ++(0,0,-1) -- ++(0,-1,0) -- cycle;
+        }
+    }
+
+    % Add text "RGT Lab" with enhanced readability
+    \node[text face, text width=2cm, align=center] at (1.5, 1, 0.2) {RGT Lab}; % Front face
+    \node[text face, rotate=90, text width=2cm, align=center] at (2.2, 1, 1) {RGT Lab}; % Side face
+    \node[text face, text width=2cm, align=center] at (1, 2.5, 1) {RGT Lab}; % Top face
+\end{scope}
+
+\end{tikzpicture}
+}
+\end{document}

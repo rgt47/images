@@ -1,0 +1,60 @@
+
+% :Author: Stefan Kottwitz (Revised and Enhanced)
+% :Source: TeXblog - TikZ: shaded cube
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{verbatim}
+
+\begin{comment}
+:Title: Enhanced 3D Cube Logo
+:Tags: 3D, Transformations, Aesthetic Improvement
+
+This version retains the 3D cube design while improving colors, shading, and layout for better aesthetics.
+\end{comment}
+
+\usetikzlibrary{positioning,shadings,3d}
+\begin{document}
+\large
+\pagestyle{empty}
+
+% Define modern color palette
+\definecolor{primaryblue}{RGB}{38, 115, 184}
+\definecolor{secondarygold}{HTML}{C69214}
+\definecolor{lightgray}{RGB}{220, 220, 220}
+
+% Adjust size and proportions for a clean look
+\resizebox{5in}{!}{
+\begin{tikzpicture}[
+    every node/.style={minimum size=1cm, font=\sffamily, align=center},
+    cube face/.style={draw=black, thick, fill=primaryblue, opacity=0.9},
+    highlight/.style={fill=secondarygold, draw=black, very thick},
+    grid line/.style={draw=lightgray, very thin},
+    shading/.style={left color=primaryblue!80, right color=primaryblue!40}
+]
+
+% Draw the main 3D cube with visible faces
+\begin{scope}[tdplot_main_coords]
+    % Front face
+    \fill[shading] (0,0,0) -- (1,0,0) -- (1,1,0) -- (0,1,0) -- cycle;
+    % Top face
+    \fill[shading, top color=primaryblue!50] (0,1,0) -- (1,1,0) -- (1,1,1) -- (0,1,1) -- cycle;
+    % Side face
+    \fill[shading, right color=primaryblue!30] (1,0,0) -- (1,1,0) -- (1,1,1) -- (1,0,1) -- cycle;
+
+    % Add cube grid lines for structure
+    \foreach \x in {0, 1} {
+        \foreach \y in {0, 1} {
+            \draw[grid line] (\x,\y,0) -- (\x,\y,1);
+            \draw[grid line] (\x,0,\y) -- (\x,1,\y);
+            \draw[grid line] (0,\x,\y) -- (1,\x,\y);
+        }
+    }
+\end{scope}
+
+% Add optional annotations or highlights
+\node[font=\large\bfseries, text=secondarygold, above] at (1, 1, 1) {Sudoku Cube};
+
+\end{tikzpicture}
+}
+\end{document}

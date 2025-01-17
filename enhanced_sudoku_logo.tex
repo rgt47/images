@@ -1,0 +1,55 @@
+
+% :Author: Stefan Kottwitz (Enhanced)
+% :Source: TeXblog - TikZ: shaded cube
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{verbatim}
+
+\begin{comment}
+:Title: Enhanced Sudoku 3D Cube
+:Tags: 3D, Transformations, Aesthetic Improvement
+
+This updated design improves color harmony, shading, and layout for a professional appeal.
+\end{comment}
+
+\usetikzlibrary{positioning,shadings}
+\begin{document}
+\large
+\pagestyle{empty}
+
+% Define colors with improved contrast and harmony
+\definecolor{primaryblue}{RGB}{38, 120, 178}
+\definecolor{secondarygold}{HTML}{D4A017}
+\definecolor{shadowgray}{HTML}{E0E0E0}
+
+\resizebox{5in}{!}{
+\begin{tikzpicture}[
+    every node/.style={minimum size=1cm, font=\sffamily, align=center},
+    cube/.style={fill=primaryblue, draw=black, line width=0.5mm},
+    highlight/.style={fill=secondarygold, draw=black, line width=0.7mm},
+    shadow/.style={fill=shadowgray, opacity=0.5}
+]
+
+% Draw 3D cube with improved shading
+\foreach \x in {0, 1} {
+    \foreach \y in {0, 1} {
+        \foreach \z in {0, 1} {
+            \draw[cube] (\x,\y,\z)
+                -- ++(1,0,0) -- ++(0,1,0) -- ++(-1,0,0) -- cycle;
+        }
+    }
+}
+
+% Add drop shadow for depth
+\shade[shadow] (0.1, -0.1, -0.1) -- ++(1.2,0,0) -- ++(0.1,1.1,0) -- ++(-1.2,0,0) -- cycle;
+
+% Highlight key elements
+\draw[highlight] (0,0,0) -- (1,0,0) -- (1,1,0) -- cycle;
+
+% Optional text annotation
+\node[above right, font=\large\bfseries, text=primaryblue] at (1.5, 1.5) {Sudoku Logo};
+
+\end{tikzpicture}
+}
+\end{document}

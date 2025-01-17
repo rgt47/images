@@ -1,0 +1,64 @@
+% :Author: Refined Rubik's Cube with UC San Diego Colors
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage{fontspec}
+
+\begin{comment}
+:Title: Rubik's Cube with UC San Diego Colors and Refined Text
+:Tags: 3D, Transformations, Text Enhancement
+
+This design uses UC San Diego's official colors, enhances text readability, and maintains a professional aesthetic.
+\end{comment}
+
+\usetikzlibrary{positioning,shadings}
+\begin{document}
+\large
+\pagestyle{empty}
+
+% Define UC San Diego colors
+\definecolor{ucsdblue}{RGB}{0, 51, 102}
+\definecolor{ucsdyellow}{RGB}{255, 204, 0}
+\definecolor{ucsdgray}{RGB}{166, 166, 166}
+\definecolor{textcolor}{RGB}{255, 255, 255} % White text for contrast
+
+\resizebox{5in}{!}{
+\begin{tikzpicture}[
+    every node/.style={minimum size=1cm, font=\bfseries\sffamily\large, align=center},
+    cube face/.style={draw=black, very thick},
+    text face/.style={font=\bfseries\sffamily\large, text=textcolor},
+    shading/.style={left color=ucsdblue!80, right color=ucsdblue!50}
+]
+
+% Front face (divided into squares with UCSD blue)
+\foreach \x in {0, 1, 2} {
+    \foreach \y in {0, 1, 2} {
+        \fill[ucsdblue] (\x,\y,0) rectangle ++(1,1);
+        \draw[cube face] (\x,\y,0) rectangle ++(1,1);
+    }
+}
+
+% Top face (divided into squares with UCSD yellow)
+\foreach \x in {0, 1, 2} {
+    \foreach \z in {0, 1, 2} {
+        \fill[ucsdyellow] (\x,2,\z) -- ++(1,0) -- ++(0,-1) -- ++(-1,0) -- cycle;
+        \draw[cube face] (\x,2,\z) -- ++(1,0) -- ++(0,-1) -- ++(-1,0) -- cycle;
+    }
+}
+
+% Side face (divided into squares with UCSD gray)
+\foreach \y in {0, 1, 2} {
+    \foreach \z in {0, 1, 2} {
+        \fill[ucsdgray] (2,\y,\z) -- ++(0,1) -- ++(0,0,-1) -- ++(0,-1) -- cycle;
+        \draw[cube face] (2,\y,\z) -- ++(0,1) -- ++(0,0,-1) -- ++(0,-1) -- cycle;
+    }
+}
+
+% Add "RGT Lab" text with enhanced readability and alignment
+\node[text face] at (1.5, 1, 0) {RGT Lab}; % Front face
+\node[text face, rotate=90] at (2, 1, 1) {RGT Lab}; % Side face
+\node[text face] at (1, 2.5, 1) {RGT Lab}; % Top face
+
+\end{tikzpicture}
+}
+\end{document}
